@@ -1,0 +1,24 @@
+﻿@model Project3_FinalExam.ViewModels.AboutViewModel
+<style>
+    body {
+        background: url('https://previews.123rf.com/images/kanyaratyas/kanyaratyas1812/kanyaratyas181200026/121193384-science-technology-light-gray-background-design-abstract-glow-white-gray-modern-template-for-cover-o.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+    <body>
+        <h2> <a asp-controller="Home" asp-action="Index"><img width="70" height="70" alt="logo" src="https://www.rit.edu/marketing/brandportal/images/1505/toolkits/logo/rit-tiger-with-text.jpg"></a> @Model.Title</h2>
+        <div class="text-center" id="myUnderDegrees">
+            <br />
+            <img height="375" width="100%" alt="Logo" src="https://ucbc13290d5464fc9c5a3485fedb.previews.dropboxusercontent.com/p/thumb/ABCsjkiRA-bLoRGRTZWjcWpLnCXc-k7vuw31N2ToXA1mRZzPSTwHpPcDay52JFXPzV71jubzJPCVtrLDEDAk33Ml6T1CwFUqklEDjlYDFNa-MogTahf3zEscNkfLqB3RTD5SQ1dWQ-WdverNQ95ZbtAzTexrVXaOXKe7AYVSAZ8rTwmicpAYq4RjxkpH8sciSCRRq1x-1xQotctzMMsM3vtVKccMwdcHcWdW_6eHkO6IwCm2PjfOKqfgv5_ozDaOD5W9c4FSDgDsYddyfMSvQoWQMbsOnvhT1bfowWm1cQnnwIOk0jSZ2AhY-Ymc7g1ncNtn6ZypdxsGirxNshQ55OYAmGJGHf9HBEyKEr6Jvay86ROSNMgd1lGMU4GBYdog-FkTNvVc0_BRil9aLyXR_rwm_YNMsR1rgXFrkXmBiXGFMg/p.jpeg?fv_content=true&size_mode=5">
+            <br /><br />
+            @foreach (var ab in Model.about)
+            {
+                <h3 id=@String.Concat("myHdng", ab.title)><b>@ab.title</b></h3>
+                <p>@ab.description</p>
+                <p>@ab.quote</p>
+                <p>@ab.quoteAuthor</p>
+
+            }
+        </div>
+    </body>

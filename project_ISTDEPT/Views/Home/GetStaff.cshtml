@@ -1,0 +1,122 @@
+﻿@model Project3_FinalExam.ViewModels.StaffViewModel
+    <style>
+        body {
+            background: url('https://previews.123rf.com/images/kanyaratyas/kanyaratyas1812/kanyaratyas181200026/121193384-science-technology-light-gray-background-design-abstract-glow-white-gray-modern-template-for-cover-o.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <body>
+        <h2><a asp-controller="Home" asp-action="Index"><img width="70" height="70" alt="logo" src="https://www.rit.edu/marketing/brandportal/images/1505/toolkits/logo/rit-tiger-with-text.jpg"></a> @Model.Title</h2>
+        <br />
+        <br />
+        @for (var i = 0; i < Model.Staff.Count; i++)
+        {
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="thumbnail" id=@String.Concat("myDiv:", i.ToString()) onclick="getName(id)">
+                        <img src="@Model.Staff[i].imagePath" style="height:200px;width:190px" alt="" />
+                    </div>
+                    <div class="caption">
+                        <h3 style="font-size:medium">
+                            @Model.Staff[i].name
+                        </h3>
+                    </div>
+                </div>
+                @{
+                    if (i < Model.Staff.Count - 1)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                <div class="col-sm-3">
+                    <div class="thumbnail" id=@String.Concat("myDiv:", i.ToString()) onclick="getName(id)">
+                        <img src="@Model.Staff[i].imagePath" style="height:200px;width:190px" alt="" />
+                    </div>
+                    <div class="caption">
+                        <h3 style="font-size:medium">
+                            @Model.Staff[i].name
+                        </h3>
+                    </div>
+                </div>
+                @{
+                    if (i < Model.Staff.Count - 1)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                <div class="col-sm-3">
+                    <div class="thumbnail" id=@String.Concat("myDiv:", i.ToString()) onclick="getName(id)">
+                        <img src="@Model.Staff[i].imagePath" style="height:200px;width:190px" alt="" />
+                    </div>
+                    <div class="caption">
+                        <h3 style="font-size:medium">
+                            @Model.Staff[i].name
+                        </h3>
+                    </div>
+                </div>
+                @{
+                    if (i < Model.Staff.Count - 1)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                <div class="col-sm-3">
+                    <div class="thumbnail" id=@String.Concat("myDiv:", i.ToString()) onclick="getName(id)">
+                        <img src="@Model.Staff[i].imagePath" style="height:200px;width:190px" alt="" />
+                    </div>
+                    <div class="caption">
+                        <h3 style="font-size:medium">
+                            @Model.Staff[i].name
+                        </h3>
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+                <div>&nbsp;</div>
+            </div>
+        }
+        <div id="dialog"></div>
+    </body>
+    @*Get jQuery and jQueryUI Scripts from wwwroot*@
+    <script src="~/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="~/jqueryui/themes/dark-hive/jquery-ui.min.css">
+    <script src="~/jqueryui/jquery-ui.js"></script>
+    <script>
+    var $j = jQuery.noConflict();
+    var staffData = @Html.Raw(Json.Serialize(Model.Staff));
+
+    function getName(id) {
+        console.log(staffData);
+        let staffElement = (id).split(':')[1];
+
+        var divContent = "<div><ul>";
+
+        divContent += "<li><font color='#18ADEA'><b><u>Title:</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>" + staffData[staffElement].title + "</b></<li>"
+        divContent += "<li><font color='#18ADEA'><b><u>Email:</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>" + staffData[staffElement].email + "</b></<li>"
+
+        divContent += "</ul></div>";
+
+        console.log(divContent);
+
+        let elmnt = document.getElementById(id);
+        $j("#dialog").html(divContent);
+        $j("#dialog").dialog({
+            title: staffData[staffElement].name,
+            width: 500,
+            position: { my: "center", at: "bottom+40%", of: elmnt}
+        });
+        $j("#dialog").dialog("open")
+    }
+    </script>

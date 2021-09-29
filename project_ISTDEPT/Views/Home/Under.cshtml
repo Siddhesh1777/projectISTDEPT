@@ -1,0 +1,54 @@
+﻿@model Project3_FinalExam.ViewModels.UndergradViewModel
+    <style>
+        body {
+            background: url('https://previews.123rf.com/images/kanyaratyas/kanyaratyas1812/kanyaratyas181200026/121193384-science-technology-light-gray-background-design-abstract-glow-white-gray-modern-template-for-cover-o.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <body>
+        <h2> <a asp-controller="Home" asp-action="Index"><img width="70" height="70" alt="logo" src="https://www.rit.edu/marketing/brandportal/images/1505/toolkits/logo/rit-tiger-with-text.jpg"></a> @Model.Title</h2>
+
+        <br />
+        <h4 style="text-align: center">Degrees</h4>
+        <br />
+        <div id="myUnderDegrees"></div>
+
+        @foreach (var under in Model.UnderGrads)
+        {
+            <h3 id=@String.Concat("myHdng", under.degreeName)><b>@under.degreeName</b></h3>
+
+            <div id=@String.Concat("myDiv", under.degreeName)>
+                <p>@under.title</p>
+                <p>@under.description</p>
+                <ul>
+                    @foreach (var conc in @under.concentrations)
+                    {
+                        <li>@conc</li>
+
+                    }
+                </ul>
+            </div>
+        }
+    </body>
+    @*Get jQuery and jQueryUI Scripts from wwwroot*@
+    <script src="~/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="~/jqueryui/themes/dark-hive/jquery-ui.min.css">
+    <script src="~/jqueryui/jquery-ui.js"></script>
+    <script>
+        // Create Accordion
+        let headings = document.querySelectorAll("h3");
+        let divs = document.querySelectorAll("[id^='myDiv']");
+
+        for (var i = 0; i < headings.length; i++) {
+            $("#myUnderDegrees").append($("#" + headings[i].id));
+            $("#myUnderDegrees").append($("#" + divs[i].id));
+        }
+
+        $('#myUnderDegrees').accordion({
+            collapsible: true,
+            active: false,
+            heightStyle: "content"
+        });
+    </script>
+

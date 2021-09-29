@@ -1,0 +1,49 @@
+﻿@model Project3_FinalExam.ViewModels.MinorsViewModel
+    <style>
+        body {
+            background: url('https://previews.123rf.com/images/kanyaratyas/kanyaratyas1812/kanyaratyas181200026/121193384-science-technology-light-gray-background-design-abstract-glow-white-gray-modern-template-for-cover-o.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <body>
+        <h2><a asp-controller="Home" asp-action="Index"><img width="70" height="70" alt="logo" src="https://www.rit.edu/marketing/brandportal/images/1505/toolkits/logo/rit-tiger-with-text.jpg"></a> @Model.Title</h2>
+        <br />
+        <h3 style="text-align: center">Undergraduate Minors</h3>
+        <br />
+        <div id="myMinors">
+
+            <ul>
+                @foreach (var min in Model.minors)
+                {
+                    //<h3 id=@String.Concat("myHdng", under.degreeName)><b>@under.degreeName</b></h3>
+
+                    <li><a href=@String.Concat("#myDiv", min.name)>@min.name</a></li>
+                }
+            </ul>
+            @foreach (var min in Model.minors)
+            {
+                <div id=@String.Concat("myDiv", min.name)>
+                    <p>@min.title</p>
+                    <p>@min.description</p>
+                    <ul>
+                        @foreach (var c in min.courses)
+                        {
+                            <li>@c</li>
+                        }
+                    </ul>
+
+                </div>
+
+
+
+            }
+        </div>
+    </body>
+    @*Get jQuery and jQueryUI Scripts from wwwroot*@
+    <script src="~/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="~/jqueryui/themes/dark-hive/jquery-ui.min.css">
+    <script src="~/jqueryui/jquery-ui.js"></script>
+    <script>
+        $("#myMinors").tabs();
+    </script>

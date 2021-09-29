@@ -1,0 +1,48 @@
+﻿@model Project3_FinalExam.ViewModels.CoopViewModel
+
+    <script src="~/jquery/jquery.js"></script>
+    <script src="~/jqueryui/jquery-ui.js"></script>
+    <script src="~/jsgrid/jsgrid.js"></script>
+    <script src="~/jsgrid/jsgrid.min.js"></script>
+    <link rel="stylesheet" href="~/jsgrid/jsgrid.css">
+    <link rel="stylesheet" href="~/jsgrid/jsgrid-theme.css">
+    <style>
+        table tr th {
+            text-align: center;
+            font-family: sans-serif;
+        }
+        body {
+            background: url('https://previews.123rf.com/images/kanyaratyas/kanyaratyas1812/kanyaratyas181200026/121193384-science-technology-light-gray-background-design-abstract-glow-white-gray-modern-template-for-cover-o.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <body>
+        <h2><a asp-controller="Home" asp-action="Index"><img width="70" height="70" alt="logo" src="https://www.rit.edu/marketing/brandportal/images/1505/toolkits/logo/rit-tiger-with-text.jpg"></a> @Model.Title</h2>
+        <br />
+        <h3 style="text-align: center">Co-op Table</h3>
+        <br />
+        <div id="jsGrid1">
+            <script>
+        $("#jsGrid1").jsGrid({
+            width: "100%",
+            height: "700px",
+
+            inserting: false,
+            editing: false,
+            sorting: true,
+            paging: true,
+
+            data: @Html.Raw(Json.Serialize(Model.Coop)),
+            fields: [
+                { name: "employer", title: "Employer", type: "text", width: 80, validate: "required" },
+                { name: "degree", title: "Degree", type: "text", width: 50 },
+                { name: "city", title: "City", type: "text", width: 75 },
+                { name: "term", title: "Term", type: "text", width: 50 }
+
+            ]
+
+        });
+            </script>
+        </div>
+    </body>
